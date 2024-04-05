@@ -28,9 +28,12 @@ public class Pixel {
 	
 	// Método que define os valores de cor em RGB
 	void setCor(int r, int g, int b) {
-		this.r = r;
-		this.g = g;
-		this.b = b;
+		if ((0 <= r) && (r <= 255))
+			this.r = r;
+		if ((0 <= g) && (g <= 255))
+			this.g = g;
+		if ((0 <= b) && (b <= 255))
+			this.b = b;
 	}
 	
 	// Método que apresenta as informações sobre o pixel na forma: (x, y) e #(R, G, B)

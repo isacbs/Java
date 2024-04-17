@@ -1,0 +1,32 @@
+package Lab2;
+
+public class TestaMatriz {
+   public static void main(String[] args) {
+       Matriz matriz = new Matriz(5, 5);
+      
+       matriz.defTitulo(0, "Filial");
+       matriz.defTitulo(1, "Janeiro");
+       matriz.defTitulo(2, "Fevereiro");
+       matriz.defTitulo(3, "Março");
+       matriz.defTitulo(4, "Abril");
+
+       double[][] dados = {
+           {101, 123.78, 145.45, 169.81, 152.37},
+           {202, 234.89, 253.42, 232.19, 247.41},
+           {303, 67.32, 73.15, 81.02, 79.13},
+           {404, 48.13, 49.78, 50.22, 48.97},
+           {505, 7654.32, 6987.64, 7193.21, 6023.81}
+       };
+
+       for (int i = 0; i < matriz.linha; i++)
+           matriz.preencher(i, dados[i]);
+      
+       matriz.exibir();
+
+       double[] totais = matriz.totalColuna();
+       System.out.println("\nTotais por Coluna:");
+       for (int i = 0; i < totais.length; i++)
+           System.out.printf("%-5s: %.2f%n", matriz.titulo[i], totais[i]);
+      
+   }
+}

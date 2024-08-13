@@ -8,9 +8,8 @@ public class DiagonalPrincipal {
 	// Fazendo a matriz e a soma para a diagonal principal
 	public static int Diagonal(int[][] matriz) {
 		int soma = 0;
-		for (int i = 0; i < matriz.length; i++) {
+		for (int i = 0; i < matriz.length; i++)
 			soma += matriz[i][i];
-		}
 		return soma;
 	}
 

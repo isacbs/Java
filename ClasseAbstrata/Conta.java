@@ -1,4 +1,4 @@
-package br.dev.joaquim;
+package abstracao;
 
 public abstract class Conta {
 	protected double saldo;

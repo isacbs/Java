@@ -1,4 +1,4 @@
-package br.dev.joaquim;
+package abstracao;
 
 public class ContaEspecial extends Conta {
 	private double limite;

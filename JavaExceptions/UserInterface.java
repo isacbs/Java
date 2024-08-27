@@ -4,16 +4,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 import br.dev.joaquim.bank.BankAccount;
-import br.dev.joaquim.exceptions.InsufficientFundsException;
+import br.dev.joaquim.exceptions.InsufficientFoundsException;
 
 public class UserInterface {
-	private Scanner ent = new Scanner(System.in);
+	private Scanner input = new Scanner(System.in);
 	private BankAccount account;
 
-	private void welcome() {
+	private void welcome() { 
 		System.out.println("Bem-vindo ao sistema bancário");
 		System.out.print("Vamos criar usa conta, informe seu nome: ");
-		String holderName = ent.nextLine();
+		String holderName = input.nextLine();
 		int accountNumber = (new Random()).nextInt(1000, 9999);
 		System.out.println("Criamos uma conta com o número: " + accountNumber + ", com saldo igual a 0 (zero).");
 		this.account = new BankAccount(accountNumber, 0, holderName);
@@ -58,7 +58,7 @@ public class UserInterface {
 				waitUser();
 			} catch (NumberFormatException ex) {
 				System.out.println("Valor informado não é um número");
-			} catch (IllegalArgumentException | InsufficientFundsException ex) {
+			} catch (IllegalArgumentException | InsufficientFoundsException ex) {
 				System.out.println(ex);
 			}
 		}
@@ -71,7 +71,7 @@ public class UserInterface {
 		System.out.println("Desposito realizado com sucesso.");
 	}
 
-	private void withdraw() throws InsufficientFundsException {
+	private void withdraw() throws InsufficientFoundsException {
 		System.out.print("\nInforme o valor a ser sacado: ");
 		double value = readValue();
 		account.withdraw(value);
@@ -79,17 +79,17 @@ public class UserInterface {
 	}
 
 	private int readOption() {
-		String choiceString = ent.nextLine();
+		String choiceString = input.nextLine();
 		return Integer.parseInt(choiceString);
 	}
 
 	private double readValue() {
-		String line = ent.nextLine();
+		String line = input.nextLine();
 		return Double.parseDouble(line);
 	}
 
 	private void waitUser() {
 		System.out.println("pressione ENTER para continuar...");
-		ent.nextLine();
+		input.nextLine();
 	}
 }

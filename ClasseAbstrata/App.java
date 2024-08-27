@@ -1,4 +1,4 @@
-package br.dev.joaquim;
+package abstracao;
 
 public class App {
 	public static void main(String[] args) {

@@ -21,4 +21,14 @@ public class Gamer {
     public String toString() {
         return name + ": " + score;
     }
+
+ // Compara nome e score
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; 
+        if (!(obj instanceof Gamer)) return false; 
+        Gamer gamer = (Gamer) obj;
+        return this.name.equals(gamer.name) && this.score == gamer.score; 
+    }
+    
 }

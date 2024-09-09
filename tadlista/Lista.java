@@ -16,7 +16,7 @@ public class Lista {
         return qtde == 0;
     }
 
-    // Retorna a qtde de elementos na list
+    // Retorna a qtde de elementos na lista
     public int size() {
         return qtde;
     }
@@ -24,7 +24,7 @@ public class Lista {
     // Retorna o conteúdo da posição p
     public Gamer get(int p) throws Exception {
         if (isEmpty()) {
-            throw new Exception("A lista está vazia!!");
+            throw new Exception("A lista está vazia!");
         }
         if (p < 0 || p >= qtde) {
             throw new Exception("Posição inválida");
@@ -35,7 +35,7 @@ public class Lista {
     // Substitui o conteúdo de p por novo
     public void set(int p, Gamer novo) throws Exception {
         if (isEmpty()) {
-            throw new Exception("A lista está vazia!!");
+            throw new Exception("A lista está vazia!");
         }
         if (p < 0 || p >= qtde) {
             throw new Exception("Posição inválida");
@@ -44,13 +44,12 @@ public class Lista {
     }
 
     // Adiciona o novo elemento na posição p
-    public void add(Gamer novo) throws Exception {
+    public void add(int p, Gamer novo) throws Exception {
         if (qtde == tamanho) {
-            throw new Exception("A lista está cheia!! Impossível inserir");
+            throw new Exception("A lista está cheia! Impossível inserir.");
         }
-        int p = 0;
-        while (p < qtde && vetor[p].getScore() > novo.getScore()) {
-            p++;
+        if (p < 0 || p > qtde) {
+            throw new Exception("Posição inválida");
         }
         for (int i = qtde; i > p; i--) {
             vetor[i] = vetor[i - 1];
@@ -62,12 +61,12 @@ public class Lista {
     // Remove o elemento da posição p
     public void remove(int p) throws Exception {
         if (isEmpty()) {
-            throw new Exception("A lista está vazia!! Impossível remover");
+            throw new Exception("A lista está vazia! Impossível remover.");
         }
-        if (p < 0 || p > qtde - 1) {
-            throw new Exception("Posição inválida!!");
+        if (p < 0 || p >= qtde) {
+            throw new Exception("Posição inválida!");
         }
-        for (int i = p; i <= qtde - 2; i++) {
+        for (int i = p; i < qtde - 1; i++) {
             vetor[i] = vetor[i + 1];
         }
         qtde--;
@@ -85,7 +84,7 @@ public class Lista {
     // Exibe o conteúdo da lista
     public void mostraLista() {
         for (int i = 0; i < qtde; i++)
-            System.out.print(vetor[i] + " ");
+            System.out.print(vetor[i] + " | ");
         System.out.println("FIM DA LISTA!!");
-    }
+    }  
 }

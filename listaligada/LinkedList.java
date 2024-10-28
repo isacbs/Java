@@ -1,9 +1,9 @@
 package listaligada;
 
 public class LinkedList {
-	private Node header; // início da lista ligada
-	private Node trailer; // final da lista ligada
-	private int size; // quantidade de elementos na lista ligada
+	Node header; // início da lista ligada
+	Node trailer; // final da lista ligada
+	int size; // quantidade de elementos na lista ligada
 
 	public LinkedList() {
 		// inicializa a lista como vazia
@@ -41,7 +41,7 @@ public class LinkedList {
 			header = novo;
 			trailer = novo;
 		} else {	
-			novo.setNext(header);
+			novo.next = header;
 			header = novo;
 		}
 		size++;	
@@ -53,7 +53,7 @@ public class LinkedList {
 			header = novo;
 			trailer = novo;
 		} else {	
-			novo.setNext(novo);
+			trailer.next = novo;
 			trailer = novo;
 		}
 		size++;
@@ -64,6 +64,7 @@ public class LinkedList {
 		aux.showAnimal();
 		while (aux.next != null) {
 			aux.next= aux;
+			aux.showAnimal();
 		}
 		System.out.println("Fim da lista");
 	}

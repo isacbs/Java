@@ -24,6 +24,59 @@ public class LinkedList {
 		else
 			return false;
 	}
+	
+	public boolean removeFirst() {
+		if(isEmpty())
+			return false;
+		header = header.next;
+		size--;
+		if(isEmpty()) // removeu o único nó existente na lista 
+			trailer = null;
+		return true;
+	}
+	
+	public boolean removeLast(String elemento) {
+		if(isEmpty())
+			return false;
+		elemento = trailer.animal;
+		return remove(elemento);
+	}
+	
+	public boolean remove(String elemento) {
+		Node atual, anterior;
+		atual = header;
+		anterior = null;
+		
+		if(isEmpty()) 
+			return false;
+		
+		// se é a cabeça da lista
+		if(header.animal.equals(elemento)) {
+			header = atual.next;
+			size--;
+			return true;
+		}
+		
+		anterior = atual;
+		atual = atual.next;
+		
+		while(atual != null) {
+			if(atual.animal.equals(elemento)) {
+				anterior.next = atual.next;	
+				size--;
+				// se a remoção for o último elemento
+				if(atual == trailer)
+					trailer = anterior;
+				return true;
+			}
+			else {
+				anterior = atual;
+				atual = atual.next;
+			}
+		}
+		return false; // não encontrou o elemento
+	}
+	
 
 	public Node first() {
 		// retorna o Nó inicial da lista

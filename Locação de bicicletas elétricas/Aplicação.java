@@ -170,7 +170,7 @@ public class Aplicacao {
 
 	/**
 	 * Valida o CPF do cliente, garantindo que seja composto apenas por números,
-	 * tenha exatamente 11 dígitos e que seja um CPF válida, não tenha todos os
+	 * tenha exatamente 11 dígitos e que seja um CPF válido, não tenha todos os
 	 * números iguais.
 	 *
 	 * @param cpf CPF do cliente.
@@ -184,46 +184,46 @@ public class Aplicacao {
 		cpf = cpf.trim();
 
 		if (cpf.length() != 11) {
-			throw new IllegalArgumentException("CPF inválido! O CPF deve conter exatamente " + "11 dígitos numéricos.");
+			throw new IllegalArgumentException("CPF inválido! O CPF deve conter exatamente 11 dígitos numéricos.");
 		}
 
 		for (int i = 0; i < cpf.length(); i++) {
 			char c = cpf.charAt(i);
 			if (c < '0' || c > '9') {
-				throw new IllegalArgumentException(
-						"CPF inválido! Todos os caracteres devem " + "ser dígitos numéricos.");
+				throw new IllegalArgumentException("CPF inválido! Todos os caracteres devem ser dígitos numéricos.");
 			}
-			char primeiroDigito = cpf.charAt(0);
-			boolean todosIguais = true;
-			for (int j = 1; j < cpf.length(); j++) {
-				if (cpf.charAt(j) != primeiroDigito) {
-					todosIguais = false;
-					break;
-				}
-			}
-			if (todosIguais) {
-				throw new IllegalArgumentException("CPF inválido! Todos os dígitos são iguais.");
-			}
+		}
 
-			int soma1 = 0, soma2 = 0;
-			for (int j = 0, peso1 = 10, peso2 = 11; j < 9; j++, peso1--, peso2--) {
-				int num = cpf.charAt(j) - '0';
-				soma1 += num * peso1;
-				soma2 += num * peso2;
+		char primeiroDigito = cpf.charAt(0);
+		boolean todosIguais = true;
+		for (int j = 1; j < cpf.length(); j++) {
+			if (cpf.charAt(j) != primeiroDigito) {
+				todosIguais = false;
+				break;
 			}
+		}
+		if (todosIguais) {
+			throw new IllegalArgumentException("CPF inválido! Todos os dígitos são iguais.");
+		}
 
-			int dig1 = (soma1 * 10) % 11;
-			if (dig1 == 10)
-				dig1 = 0;
+		int soma1 = 0, soma2 = 0;
+		for (int j = 0, peso1 = 10, peso2 = 11; j < 9; j++, peso1--, peso2--) {
+			int num = cpf.charAt(j) - '0';
+			soma1 += num * peso1;
+			soma2 += num * peso2;
+		}
 
-			soma2 += dig1 * 2;
-			int dig2 = (soma2 * 10) % 11;
-			if (dig2 == 10)
-				dig2 = 0;
+		int dig1 = (soma1 * 10) % 11;
+		if (dig1 == 10)
+			dig1 = 0;
 
-			if (dig1 != cpf.charAt(9) - '0' || dig2 != cpf.charAt(10) - '0') {
-				throw new IllegalArgumentException("CPF inválido! O CPF informado é falso.");
-			}
+		soma2 += dig1 * 2;
+		int dig2 = (soma2 * 10) % 11;
+		if (dig2 == 10)
+			dig2 = 0;
+
+		if (dig1 != cpf.charAt(9) - '0' || dig2 != cpf.charAt(10) - '0') {
+			throw new IllegalArgumentException("CPF inválido! O CPF informado é falso.");
 		}
 	}
 

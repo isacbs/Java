@@ -21,6 +21,8 @@ public class Aplicacao {
 	 * Método principal da aplicação, que exibe o menu e gerencia a interação com o
 	 * cliente.
 	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static void main(String[] args) {
 		Scanner ent = new Scanner(System.in);
@@ -143,27 +145,25 @@ public class Aplicacao {
 	}
 
 	/**
-	 * Valida o nome do cliente, garantindo que não seja nulo e que tenha ao menos
-	 * dois caracteres.
+	 * Valida o nome do cliente, garantindo que não seja nulo.
 	 *
 	 * @param nome Nome do cliente;
 	 * @throws IllegalArgumentException Se o nome for inválido.
+	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static void validarNome(String nome) {
-		if (nome == null) {
-			throw new IllegalArgumentException("O nome não pode ser nulo.");
-		}
+		if (nome == null || nome.trim().isEmpty()) {
+	        throw new IllegalArgumentException("O nome não pode estar vazio!");
+	    } 
 
-		nome = nome.trim();
-
-		if (nome.length() < 2) {
-			throw new IllegalArgumentException("O nome deve conter pelo menos dois caracteres.");
-		}
+	    nome = nome.trim();
 
 		for (int i = 0; i < nome.length(); i++) {
 			char c = nome.charAt(i);
 			if ((c < 'A' || (c > 'Z' && c < 'a') || c > 'z') && c != ' ') {
-				throw new IllegalArgumentException("Nome inválido! O nome deve conter apenas letras.");
+				throw new IllegalArgumentException("Nome inválido! O nome deve conter apenas letras e " + "espaços.");
 			}
 		}
 	}
@@ -175,6 +175,9 @@ public class Aplicacao {
 	 *
 	 * @param cpf CPF do cliente.
 	 * @throws IllegalArgumentException Se o CPF for inválido.
+	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static void validarCPF(String cpf) {
 		if (cpf == null) {
@@ -202,28 +205,9 @@ public class Aplicacao {
 				break;
 			}
 		}
+		
 		if (todosIguais) {
 			throw new IllegalArgumentException("CPF inválido! Todos os dígitos são iguais.");
-		}
-
-		int soma1 = 0, soma2 = 0;
-		for (int j = 0, peso1 = 10, peso2 = 11; j < 9; j++, peso1--, peso2--) {
-			int num = cpf.charAt(j) - '0';
-			soma1 += num * peso1;
-			soma2 += num * peso2;
-		}
-
-		int dig1 = (soma1 * 10) % 11;
-		if (dig1 == 10)
-			dig1 = 0;
-
-		soma2 += dig1 * 2;
-		int dig2 = (soma2 * 10) % 11;
-		if (dig2 == 10)
-			dig2 = 0;
-
-		if (dig1 != cpf.charAt(9) - '0' || dig2 != cpf.charAt(10) - '0') {
-			throw new IllegalArgumentException("CPF inválido! O CPF informado é falso.");
 		}
 	}
 
@@ -231,6 +215,9 @@ public class Aplicacao {
 	 * Cadastra um novo cliente na lista de clientes.
 	 *
 	 * @param c Cliente a ser cadastrado.
+	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static void cadastrar(Cliente c) {
 		clientes[qtdClientes++] = c;
@@ -244,6 +231,9 @@ public class Aplicacao {
 	 * @param cpf CPF do cliente.
 	 * @return true se a locação for executada, false caso não seja possível a
 	 *         locação.
+	 *         
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static boolean locar(String cpf) {
 		for (int i = 0; i < qtdClientes; i++) {
@@ -265,6 +255,9 @@ public class Aplicacao {
 	 * @param cpf CPF do cliente.
 	 * @return true se a devolução for bem-sucedida, false caso não encontre o
 	 *         cliente nos dados.
+	 *         
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810     
 	 */
 	public static boolean devolver(String cpf) {
 		for (int i = 0; i < qtdClientes; i++) {
@@ -284,6 +277,9 @@ public class Aplicacao {
 	 *
 	 * @param cpf CPF do cliente a ser removido.
 	 * @return 1 se o cliente foi removido, 0 se ele não foi encontrado.
+	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static int remover(String cpf) {
 		for (int i = 0; i < qtdClientes; i++) {
@@ -302,6 +298,9 @@ public class Aplicacao {
 	 * Exibe os dados de um cliente com base no CPF.
 	 *
 	 * @param cpf CPF do cliente.
+	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static void exibirCliente(String cpf) {
 		for (Cliente cliente : clientes) {
@@ -316,6 +315,8 @@ public class Aplicacao {
 	/**
 	 * Lista todos os clientes ordenados pelo total gasto em ordem decrescente.
 	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static void listarClientes() {
 		ordenarClientesPorGasto();
@@ -328,6 +329,9 @@ public class Aplicacao {
 	 * Retorna o cliente mais rentável, o que mais gastou dinheiro.
 	 *
 	 * @return Cliente mais rentável.
+	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	public static Cliente clienteMaisRentavel() {
 		if (qtdClientes == 0)
@@ -345,6 +349,8 @@ public class Aplicacao {
 	 * Ordena os clientes por total gasto em ordem decrescente, usando o método de
 	 * ordenação Bubble Sort.
 	 * 
+	 * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
 	 */
 	private static void ordenarClientesPorGasto() {
 		for (int i = 0; i < qtdClientes - 1; i++) {

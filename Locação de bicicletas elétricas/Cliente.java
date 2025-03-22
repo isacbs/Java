@@ -26,6 +26,9 @@ public class Cliente {
      * @param totalGasto Total gasto das locações feitas pelo cliente;
      * @param bicicletaAlugada Checa se a bicicleta está alugada no momento;
      * @param quantidadeLocacoes Quantidade de locações que o cliente fez.
+     * 
+     * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
      */
     public Cliente(String nome, String cpf) {
         this.nome = nome;
@@ -44,6 +47,8 @@ public class Cliente {
      * @return true se a bicicleta estiver alugada, false caso não esteja;
      * @return quantidade de locações que o cliente fez.
      * 
+     * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
      */
     public String getNome() {
         return nome;
@@ -68,6 +73,8 @@ public class Cliente {
     /**
      * Realiza a locação de uma bicicleta, aumentando o total gasto e a quantidade de locações.
      * 
+     * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
      */
     public void locarBicicleta() {
         this.bicicletaAlugada = true;
@@ -78,6 +85,8 @@ public class Cliente {
     /**
      * Devolve a bicicleta, alterando o estado da locação.
      * 
+     * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
      */
     public void devolverBicicleta() {
         this.bicicletaAlugada = false;
@@ -86,12 +95,14 @@ public class Cliente {
     /**
      * String com as informações do cliente.
      * 
+     * @author Isadora Caetano Brandão de Sousa @ra 10420646
+	 * @author Luana Fernandes @ra 10439810
      */
     @Override
     public String toString() {
-        return "Nome: " + nome + "\nCPF: " + cpf + "\nTotal Gasto: R$ " + totalGasto +
+        return "\nNome: " + nome + "\nCPF: " + cpf + "\nTotal Gasto: R$ " + totalGasto +
                "\nBicicleta Alugada: " + (bicicletaAlugada ? "Sim" : "Não") +
                "\nTotal de Locações: " + quantidadeLocacoes;
-    }
+    } 
     
 }
